@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Font awesome/css/all.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Indie+Flower&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+
+    <title>ToDoList</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="popup">
+        <div class="popup-content">
+          <form name="addtodo" action="">
+            <input
+              type="text"
+              name="taskName"
+              id="taskName"
+              placeholder="task name"
+              required
+            />
+            <input
+              type="text"
+              name="taskDescription"
+              id="taskDescription"
+              placeholder="task description"
+            />
+            <span class="nameRequired">Enter ToDo name! it`s required!</span>
+            <p><b>Check task priority</b></p>
+            <p>
+              <input type="radio" name="priority" value="trial" checked />trial
+            </p>
+            <p>
+              <input type="radio" name="priority" value="termless" />termless
+            </p>
+            <p><input type="radio" name="priority" value="rush" />rush</p>
+            <input type="button" value="add" id="formAddBtn" />
+            <input type="button" value="cancel" id="formCancelBtn" />
+          </form>
+        </div>
+      </div>
+      <div class="popupChange">
+        <div class="popupChange-content">
+          <input
+            type="text"
+            name="taskNameChange"
+            id="taskNameChange"
+            placeholder="task name"
+            required
+          />
+          <input
+            type="text"
+            name="taskDescriptionChange"
+            id="taskDescriptionChange"
+            placeholder="task description"
+          />
+          <span class="nameRequiredChange"
+            >Enter ToDo name! it`s required!</span
+          >
+          <p>
+            <input
+              type="radio"
+              name="priorityChange"
+              value="trial"
+              checked
+            />trial
+          </p>
+          <p>
+            <input
+              type="radio"
+              name="priorityChange"
+              value="termless"
+            />termless
+          </p>
+          <p><input type="radio" name="priorityChange" value="rush" />rush</p>
+          <input type="button" value="save" id="formSaveChangeBtn" />
+          <input type="button" value="cancel" id="formCancelChangeBtn" />
+        </div>
+      </div>
+      <h1>To-Do List</h1>
+      <input
+        class="newToDo_btn"
+        type="button"
+        value="add new to-do"
+        id="newToDo_btn"
+      />
+      <input
+        class="saveToDo_btn"
+        type="button"
+        value="save to-do"
+        id="saveToDo_btn"
+      />
+      <div class="tabs-nav">
+        <div class="tabs-nav_item active-nav" tab-name="current">current</div>
+        <div class="tabs-nav_item" tab-name="completed">completed</div>
+        <div class="tabs-nav_item" tab-name="remote">remote</div>
+      </div>
+      <div class="tabs-content">
+        <div class="tab current active-content">
+          <ul class="toDo-list-current">
+            <li>
+              <span class="toDo-name">to eat</span>
+              <span class="toDo-description"
+                >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Possimus, quibusdam.
+              </span>
+              <span class="toDo-priority">trial</span>
+              <span class="toDo-tools">
+                <i class="fas fa-cash-register"></i>
+                <i class="fas fa-check-square"></i>
+                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-restore"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="tab completed">
+          <ul class="toDo-list-completed">
+            <li>
+              <span class="toDo-name">to sleep</span>
+              <span class="toDo-description"></span>
+              <span class="toDo-priority">trial</span>
+              <span class="toDo-tools">
+                <i class="fas fa-cash-register"></i>
+                <i class="fas fa-check-square"></i>
+                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-restore"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="tab remote">
+          <ul class="toDo-list-remote">
+            <li>
+              <span class="toDo-name">to buy</span>
+              <span class="toDo-description"></span>
+              <span class="toDo-priority">trial</span>
+              <span class="toDo-tools">
+                <i class="fas fa-cash-register"></i>
+                <i class="fas fa-check-square"></i>
+                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-restore"></i>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
