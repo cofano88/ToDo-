@@ -81,7 +81,7 @@ function addTodoItem() {
     <i class="fas fa-trash-alt"></i>
     <i class="fas fa-trash-restore"></i>
     </span>`;
-    let ul = document.querySelector(".toDo-list-current");
+    let ul = document.getElementsByClassName("toDo-list-current")[0];
     ul.append(item);
     item.getElementsByClassName("fa-cash-register")[0].style.display = "inline";
     item.getElementsByClassName("fa-check-square")[0].style.display = "inline";
@@ -89,9 +89,9 @@ function addTodoItem() {
     item.getElementsByClassName("fa-trash-restore")[0].style.display = "none";
 
     item.lastElementChild
-      .querySelector(".fa-trash-alt")
+      .getElementsByClassName("fa-trash-alt")[0]
       .addEventListener("click", function () {
-        let ul = document.querySelector(".toDo-list-remote");
+        let ul = document.getElementsByClassName("toDo-list-remote")[0];
         ul.append(item);
         item.getElementsByClassName("fa-cash-register")[0].style.display =
           "none";
@@ -103,9 +103,9 @@ function addTodoItem() {
       });
 
     item.lastElementChild
-      .querySelector(".fa-check-square")
+      .getElementsByClassName("fa-check-square")[0]
       .addEventListener("click", function () {
-        let ul = document.querySelector(".toDo-list-completed");
+        let ul = document.getElementsByClassName("toDo-list-completed")[0];
         ul.append(item);
         item.getElementsByClassName("fa-cash-register")[0].style.display =
           "inline";
@@ -117,9 +117,9 @@ function addTodoItem() {
       });
 
     item.lastElementChild
-      .querySelector(".fa-trash-restore")
+      .getElementsByClassName("fa-trash-restore")[0]
       .addEventListener("click", function () {
-        let ul = document.querySelector(".toDo-list-current");
+        let ul = document.getElementsByClassName("toDo-list-current")[0];
         ul.append(item);
         item.getElementsByClassName("fa-cash-register")[0].style.display =
           "inline";
@@ -131,7 +131,7 @@ function addTodoItem() {
       });
 
     item.lastElementChild
-      .querySelector(".fa-cash-register")
+      .getElementsByClassName("fa-cash-register")[0]
       .addEventListener("click", function () {
         document.getElementsByName(
           "taskNameChange"
@@ -199,7 +199,8 @@ function formReset() {
   }
 }
 
-// ---------------------------------------------------------------------
+
+// // -----------------------------------------------------------------------
 
 let todosCurrent = document.getElementsByClassName("toDo-list-current")[0];
 let todosCompleted = document.getElementsByClassName("toDo-list-completed")[0];
@@ -216,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let dataCurrent = localStorage.getItem("current");
   let dataCompleted = localStorage.getItem("completed");
   let dataRemote = localStorage.getItem("remote");
+
   if (dataCurrent) {
     todosCurrent.innerHTML = dataCurrent;
   }
@@ -224,5 +226,94 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   if (dataRemote) {
     todosRemote.innerHTML = dataRemote;
+  }
+  const todos = document.getElementsByTagName("li");
+  for (let i = 0; i < todos.length; i++) {
+    todos[i]
+      .getElementsByClassName("fa-trash-alt")[0]
+      .addEventListener("click", function () {
+        const ul = document.getElementsByClassName("toDo-list-remote")[0];
+        ul.append(todos[i]);
+        todos[i].getElementsByClassName("fa-cash-register")[0].style.display =
+          "none";
+        todos[i].getElementsByClassName("fa-check-square")[0].style.display =
+          "none";
+        todos[i].getElementsByClassName("fa-trash-alt")[0].style.display =
+          "none";
+        todos[i].getElementsByClassName("fa-trash-restore")[0].style.display =
+          "inline";
+      });
+
+    todos[i]
+      .getElementsByClassName("fa-check-square")[0]
+      .addEventListener("click", function () {
+        const ul = document.getElementsByClassName("toDo-list-completed")[0];
+        ul.append(todos[i]);
+        todos[i].getElementsByClassName("fa-cash-register")[0].style.display =
+          "inline";
+        todos[i].getElementsByClassName("fa-check-square")[0].style.display =
+          "none";
+        todos[i].getElementsByClassName("fa-trash-alt")[0].style.display =
+          "inline";
+        todos[i].getElementsByClassName("fa-trash-restore")[0].style.display =
+          "none";
+      });
+
+    todos[i]
+      .getElementsByClassName("fa-trash-restore")[0]
+      .addEventListener("click", function () {
+        const ul = document.getElementsByClassName("toDo-list-current")[0];
+        ul.append(todos[i]);
+        todos[i].getElementsByClassName("fa-cash-register")[0].style.display =
+          "inline";
+        todos[i].getElementsByClassName("fa-check-square")[0].style.display =
+          "inline";
+        todos[i].getElementsByClassName("fa-trash-alt")[0].style.display =
+          "inline";
+        todos[i].getElementsByClassName("fa-trash-restore")[0].style.display =
+          "none";
+      });
+
+    todos[i]
+      .getElementsByClassName("fa-cash-register")[0]
+      .addEventListener("click", function () {
+        document.getElementsByName("taskNameChange")[0].value = todos[
+          i
+        ].getElementsByClassName("toDo-name")[0].innerHTML;
+        document.getElementsByName("taskDescriptionChange")[0].value = todos[
+          i
+        ].getElementsByClassName("toDo-description")[0].innerHTML;
+
+        popupChange.style.display = "block";
+      });
+
+    formSaveChangeBtn.onclick = function () {
+      if (document.getElementsByName("taskNameChange")[0].value !== "") {
+        todos[i].getElementsByClassName(
+          "toDo-name"
+        )[0].innerHTML = document.getElementsByName("taskNameChange")[0].value;
+        todos[i].getElementsByClassName(
+          "toDo-description"
+        )[0].innerHTML = document.getElementsByName(
+          "taskDescriptionChange"
+        )[0].value;
+        const radiochange = document.getElementsByName("priorityChange");
+
+        for (let i = 0; i < radiochange.length; i++) {
+          if (radiochange[i].checked) {
+            priorityChange = radiochange[i].value;
+          }
+        }
+        todos[i].getElementsByClassName(
+          "toDo-priority"
+        )[0].innerHTML = priorityChange;
+        popupChange.style.display = "none";
+        document.getElementsByClassName("nameRequiredChange")[0].style.display =
+          "none";
+      } else {
+        document.getElementsByClassName("nameRequiredChange")[0].style.display =
+          "inline";
+      }
+    };
   }
 });
