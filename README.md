@@ -1,1 +1,1 @@
-ToDo list. JavaScript
+ToDo list. JavaScript.
